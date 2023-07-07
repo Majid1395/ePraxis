@@ -33,8 +33,8 @@ class ArztController extends Controller
     {
         $this->validateStore($request);
         $daten = $request->all();
-        $name = $this->userAvatar($request);
-        $daten['bild'] = $name;
+        $bild = $this->benutzerBild($request);
+        $daten['bild'] = $bild;
         $daten['password'] = bcrypt($request->password);
         // alle Daten hinzufügen
         User::create($daten);
@@ -67,14 +67,14 @@ class ArztController extends Controller
         $this->validateUpdate($request,$id);
         $daten = $request->all();
         $benutzer = User::find($id);
-        $bildName = $benutzer->bild;
+        $bild = $benutzer->bild;
         $benutzerPassword = $benutzer->password;
         if($request->hasFile('bild')){
-            $bildName = $this->userAvatar($request);
+            $bild = $this->benutzerBild($request);
             // to remove old Photo
             unlink(public_path('assets/images/users/'.$benutzer->bild));
         }
-        $daten['bild'] = $bildName;
+        $daten['bild'] = $bild;
         //Neues Passwort mit Kryptographie aktualisieren
         if($request->password){
             $daten['password'] = bcrypt($request->password);
@@ -133,7 +133,24 @@ class ArztController extends Controller
        ]);
     }
 
-    public function userAvatar($request){
+    public function defaultBild(){
+        $destination = public_path('/assets/images/users');
+        $defaultName = 'default.png';
+
+        // Überprüfe, ob das Ersatzfoto bereits existiert, um eine Duplikation zu vermeiden
+        if (!file_exists($destination.'/'.$defaultName)) {
+            // Kopiere das Ersatzfoto aus dem Standardverzeichnis
+            copy(public_path('/assets/images/default.png'), $destination.'/'.$defaultName);
+        }
+
+        // Generiere einen eindeutigen Namen für das Ersatzfoto
+        $uniqueName = uniqid().'.'.$defaultName;
+        rename($destination.'/'.$defaultName, $destination.'/'.$uniqueName);
+
+        return $uniqueName;
+    }
+
+    public function benutzerBild($request){
         $bild = $request->file('bild');
         $name = $bild->hashName();
         $destination = public_path('/assets/images/users');

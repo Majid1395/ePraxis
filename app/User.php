@@ -68,12 +68,5 @@ class User extends Authenticatable
         return $this->belongsTo(Fachbereich::class, 'fachbereich', 'name');
     }
 
-    public function userAvatar($request){
-        $bild = $request->file('bild');
-        $name = $bild->hashName();
-        $destination = public_path('/assets/images/users');
-        $bild->move($destination,$name);
-        return $name;
-    }
 }
 

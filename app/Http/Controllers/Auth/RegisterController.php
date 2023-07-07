@@ -67,7 +67,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data){
         $rolle = Rolle::where('name','patient')->first();
+        $bild = $this->defaultBild();
 
+        return User::create([
+            'vorname' => $data['vorname'],
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'rolle_id'=>$rolle->id,
+            'geschlecht'=>$data['geschlecht'],
+            'bild'=>$bild
+        ]);
+    }
+
+    public function defaultBild(){
         $destination = public_path('/assets/images/users');
         $defaultName = 'default.png';
 
@@ -81,14 +94,6 @@ class RegisterController extends Controller
         $uniqueName = uniqid().'.'.$defaultName;
         rename($destination.'/'.$defaultName, $destination.'/'.$uniqueName);
 
-        return User::create([
-            'vorname' => $data['vorname'],
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'rolle_id'=>$rolle->id,
-            'geschlecht'=>$data['geschlecht'],
-            'bild'=>$uniqueName
-        ]);
+        return $uniqueName;
     }
 }

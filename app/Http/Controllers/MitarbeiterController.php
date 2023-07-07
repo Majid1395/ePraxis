@@ -40,20 +40,10 @@ class MitarbeiterController extends Controller
         ]);
 
         $daten = $request->all();
-        $destination = public_path('/assets/images/users');
-        $defaultName = 'default.png';
 
-        // Überprüfe, ob das Ersatzfoto bereits existiert, um eine Duplikation zu vermeiden
-        if (!file_exists($destination.'/'.$defaultName)) {
-            // Kopiere das Ersatzfoto aus dem Standardverzeichnis
-            copy(public_path('/assets/images/default.png'), $destination.'/'.$defaultName);
-        }
+        $bild = $this->defaultBild();
+        $daten['bild'] = $bild;
 
-        // Generiere einen eindeutigen Namen für das Ersatzfoto
-        $uniqueName = uniqid().'.'.$defaultName;
-        rename($destination.'/'.$defaultName, $destination.'/'.$uniqueName);
-
-        $daten['bild'] = $uniqueName;
         $daten['password'] = bcrypt($request->password);
         User::create($daten);
 
@@ -116,5 +106,22 @@ class MitarbeiterController extends Controller
         $benutzerDelete = $benutzer->delete();
 
         return redirect()->route('mitarbeiter.index')->with('message','Patient erfolgreich gelöscht');
+    }
+
+    public function defaultBild(){
+        $destination = public_path('/assets/images/users');
+        $defaultName = 'default.png';
+
+        // Überprüfe, ob das Ersatzfoto bereits existiert, um eine Duplikation zu vermeiden
+        if (!file_exists($destination.'/'.$defaultName)) {
+            // Kopiere das Ersatzfoto aus dem Standardverzeichnis
+            copy(public_path('/assets/images/default.png'), $destination.'/'.$defaultName);
+        }
+
+        // Generiere einen eindeutigen Namen für das Ersatzfoto
+        $uniqueName = uniqid().'.'.$defaultName;
+        rename($destination.'/'.$defaultName, $destination.'/'.$uniqueName);
+
+        return $uniqueName;
     }
 }

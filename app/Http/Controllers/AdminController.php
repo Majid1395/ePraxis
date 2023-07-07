@@ -54,23 +54,11 @@ class AdminController extends Controller
         $this->validateStore($request, $rolleId);
         $daten = $request->all();
         if($request->file('bild')){
-            $bildName = (new User)->userAvatar($request);
-            $daten['bild'] = $bildName;
+            $bild = $this->benutzerBild($request);
+            $daten['bild'] = $bild;
         }else{
-            $destination = public_path('/assets/images/users');
-            $defaultName = 'default.png';
-
-            // Überprüfe, ob das Ersatzfoto bereits existiert, um eine Duplikation zu vermeiden
-            if (!file_exists($destination.'/'.$defaultName)) {
-                // Kopiere das Ersatzfoto aus dem Standardverzeichnis
-                copy(public_path('/assets/images/default.png'), $destination.'/'.$defaultName);
-            }
-
-            // Generiere einen eindeutigen Namen für das Ersatzfoto
-            $uniqueName = uniqid().'.'.$defaultName;
-            rename($destination.'/'.$defaultName, $destination.'/'.$uniqueName);
-
-            $daten['bild'] = $uniqueName;
+            $bild = $this->defaultBild();
+            $daten['bild'] = $bild;
         }
         $daten['password'] = bcrypt($request->password);
         User::create($daten);
@@ -90,23 +78,11 @@ class AdminController extends Controller
         $this->validateStore($request, $rolleId);
         $daten = $request->all();
         if($request->file('bild')){
-            $bildName = (new User)->userAvatar($request);
-            $daten['bild'] = $bildName;
+            $bild = $this->benutzerBild($request);
+            $daten['bild'] = $bild;
         }else{
-            $destination = public_path('/assets/images/users');
-            $defaultName = 'default.png';
-
-            // Überprüfe, ob das Ersatzfoto bereits existiert, um eine Duplikation zu vermeiden
-            if (!file_exists($destination.'/'.$defaultName)) {
-                // Kopiere das Ersatzfoto aus dem Standardverzeichnis
-                copy(public_path('/assets/images/default.png'), $destination.'/'.$defaultName);
-            }
-
-            // Generiere einen eindeutigen Namen für das Ersatzfoto
-            $uniqueName = uniqid().'.'.$defaultName;
-            rename($destination.'/'.$defaultName, $destination.'/'.$uniqueName);
-
-            $daten['bild'] = $uniqueName;
+            $bild = $this->defaultBild();
+            $daten['bild'] = $bild;
         }
         $daten['password'] = bcrypt($request->password);
         User::create($daten);
@@ -150,14 +126,14 @@ class AdminController extends Controller
         $this->validateUpdate($request,$id,$rolleId);
         $daten = $request->all();
         $benutzer = User::find($id);
-        $bildName = $benutzer->bild;
+        $bild = $benutzer->bild;
         $benutzerPassword = $benutzer->password;
         if($request->hasFile('bild')){
-            $bildName = (new User)->userAvatar($request);
+            $bild = $this->benutzerBild($request);
             // altes Bild zu löschen
             unlink(public_path('assets/images/users/'.$benutzer->bild));
         }
-        $daten['bild'] = $bildName;
+        $daten['bild'] = $bild;
         if($request->password){
             $daten['password'] = bcrypt($request->password);
         }else{
@@ -188,16 +164,6 @@ class AdminController extends Controller
         }
         return redirect()->route('admin.index')->with('message','Benutzer erfolgreich gelöscht!');
     }
-
-    // Rolle zu bestemmen
-    public function rolle(Request $request)
-    {
-        $rolle = Rolle::where('id',$request->id)->pluck('id');
-        foreach($rolle as $rolleId){
-            return view('pages.admin.create',compact('rolleId'));
-        }
-    }
-
 
     public function validateStore($request, $rolleId){
         if($rolleId == 1){
@@ -252,5 +218,30 @@ class AdminController extends Controller
                 'rolle_id'=>'required'
            ]);
         }
+    }
+
+    public function defaultBild(){
+        $destination = public_path('/assets/images/users');
+        $defaultName = 'default.png';
+
+        // Überprüfe, ob das Ersatzfoto bereits existiert, um eine Duplikation zu vermeiden
+        if (!file_exists($destination.'/'.$defaultName)) {
+            // Kopiere das Ersatzfoto aus dem Standardverzeichnis
+            copy(public_path('/assets/images/default.png'), $destination.'/'.$defaultName);
+        }
+
+        // Generiere einen eindeutigen Namen für das Ersatzfoto
+        $uniqueName = uniqid().'.'.$defaultName;
+        rename($destination.'/'.$defaultName, $destination.'/'.$uniqueName);
+
+        return $uniqueName;
+    }
+
+    public function benutzerBild($request){
+        $bild = $request->file('bild');
+        $name = $bild->hashName();
+        $destination = public_path('/assets/images/users');
+        $bild->move($destination,$name);
+        return $name;
     }
 }

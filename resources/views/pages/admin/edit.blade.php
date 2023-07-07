@@ -247,7 +247,9 @@
                                 <div class="mb-3">
                                     <div class="form-group">
                                         <label>Bild
-                                            <span class="mandatory">*</span>
+                                            @if($benutzer->rolle_id == 1)
+                                                <span class="mandatory">*</span>
+                                            @endif
                                         </label>
                                         <input type="file" class="form-control file-upload-info @error('bild') is-invalid @enderror"  placeholder="bild hochladen" name="bild">
                                         <span class="input-group-append">
