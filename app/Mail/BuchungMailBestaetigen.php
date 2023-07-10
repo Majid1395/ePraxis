@@ -37,7 +37,7 @@ class BuchungMailBestaetigen extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'pages.buchung_email.bestaetigen',
+            view: 'pages.email.bestaetigen',
         );
     }
 

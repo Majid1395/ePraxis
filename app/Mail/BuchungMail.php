@@ -38,7 +38,7 @@ class BuchungMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'pages.buchung_email.index',
+            view: 'pages.email.index',
         );
     }
 

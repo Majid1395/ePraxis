@@ -165,6 +165,7 @@ class AdminController extends Controller
         return redirect()->route('admin.index')->with('message','Benutzer erfolgreich gelöscht!');
     }
 
+    /********************* Hilfsfunktionen *************************/
     public function validateStore($request, $rolleId){
         if($rolleId == 1){
             return  $this->validate($request,[

@@ -20,7 +20,6 @@ class TerminController extends Controller
         $meineTermine = Termin::where('benutzer_id',auth()->user()->id)
             ->exists();
         if($meineTermine){
-            // appointment time for
             $meineTermine = Termin::first()
                 ->where('datum','>=',date('Y-m-d'))
                 ->where('benutzer_id',auth()->user()->id)

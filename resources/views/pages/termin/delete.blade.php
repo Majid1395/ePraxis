@@ -12,8 +12,8 @@
         <form class="forms-sample" action="{{route('termin.destroy',[$termin->id])}}" method="post">@csrf
             @method('DELETE')
             <div class="modal-footer">
-                <button type="submit" class="btn btn-danger mr-2">Confirm</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger mr-2">Bestätigen</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Abbrechen</button>
             </div>
         </form>
     </div>

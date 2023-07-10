@@ -74,22 +74,6 @@
                                 @endif
                             </td>
                             <td>
-                            @if(auth()->check()&& auth()->user()->rolle->name === 'mitarbeiter')
-                                @if($buchung->status==0)
-                                    <a href="{{route('status.aktualisiere',[$buchung->id])}}">
-                                        <button class="btn btn-primary">Bestätigen</button>
-                                    </a>
-                                @else
-                                    @for ($i = 0; $i < count($zeiten[$buchung->id]); $i++)
-                                        <form action="{{route('buchung.loeschen')}}" method="post">@csrf
-                                            <input type="hidden" name="buchungId" value="{{$buchung->id}}">
-                                            <input type="hidden" name="zeitId" value="{{$zeiten[$buchung->id][$i]['id']}}">
-                                            <button type="submit" class="btn btn-danger">Löschen</button>
-                                        </form>
-                                    @endfor
-                                @endif
-                            @endif
-                            @if(auth()->check()&& auth()->user()->rolle->name === 'arzt')
                                 @if($buchung->status==0)
                                     <a href="{{route('aktualisiere.status',[$buchung->id])}}">
                                         <button class="btn btn-primary">Bestätigen</button>
@@ -103,7 +87,6 @@
                                         </form>
                                     @endfor
                                 @endif
-                            @endif
                             </td>
                         </tr>
                         @empty

@@ -104,6 +104,7 @@ class ArztController extends Controller
         return redirect()->route('arzt.index')->with('message','Mitarbeiter erfolgreich gelöscht');
     }
 
+    /********************* Hilfsfunktionen *************************/
     public function validateStore($request){
         return  $this->validate($request,[
             'name'=>'required',

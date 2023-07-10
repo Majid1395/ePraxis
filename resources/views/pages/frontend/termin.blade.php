@@ -25,9 +25,8 @@
 									        <div class="card-body">
                                                 <img  src="{{asset('assets/images/users')}}/{{$benutzer->bild}}" width="100px" style="border-radius: 50%;" >
                                                 <br>
-                                                <!-- <p> Name: {{ucfirst($benutzer->forename)}} {{ucfirst($benutzer->name)}}</p> -->
-                                                <p> Hochschulabschluss: {{$benutzer->bildungsgrad}}</p>
-                                                <p> Spezialist: {{$benutzer->fachbereich}}</p>
+                                                <p> Hochschulabschluss: {{ucfirst($benutzer->bildungsgrad)}}</p>
+                                                <p> Spezialist: {{ucfirst($benutzer->fachbereich)}}</p>
                                             </div>
                                         </div>
 									</div>
@@ -71,17 +70,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        @if(Auth::check())
-                                            <button type="submit" class="btn-submit">Termin Buchen</button>
-                                        @else
-                                            <p>Please login to make an appointment</p>
-                                            <a href="/login">
-                                                <button class="btn-submit">Login</button>
-                                            </a>
-                                            <a href="/register">
-                                                <button class="btn-submit">Register</button>
-                                            </a>
-                                        @endif
+                                        <button type="submit" class="btn-submit">Termin Buchen</button>
                                     </div>
                                 </div>
 					        </form>
@@ -149,17 +138,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer">
-                                            @if(Auth::check())
-                                                <button type="submit" class="btn-submit">Termin Buchen</button>
-                                            @else
-                                                <p>Please login to make an appointment</p>
-                                                <a href="/login">
-                                                    <button class="btn-submit">Login</button>
-                                                </a>
-                                                <a href="/register">
-                                                    <button class="btn-submit">Register</button>
-                                                </a>
-                                            @endif
+                                            <button type="submit" class="btn-submit">Termin Buchen</button>
                                         </div>
                                     </div>
 					        	</form>

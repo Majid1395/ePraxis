@@ -89,10 +89,14 @@ Route::group(['middleware'=>['auth','mitarbeiter']],function(){
 Route::group(['middleware'=>['auth','patient']],function(){
     // Buchungsliste des angemeldeten Patients
     Route::get('/meine-buchung','BuchungController@index')->name('meine.buchung');
+
+    // Buchung löschen
     Route::post('/meine-buchung/loeschen','BuchungController@destroy')->name('meine-buchung.loeschen');
 
     // um einen Termin zu buchen
+    // verfügbare Uhrzeiten
     Route::get('/neuer-termin/patient/{arztId}/{datum}','BuchungController@show')->name('termin.neu');
+    // Termin buchen
     Route::post('/buchen/termin/patient','BuchungController@store')->name('termin.buchen');
 });
 
@@ -101,7 +105,7 @@ Route::get('/benutzer-profil','ProfilController@index')->name('profil');
 Route::post('/profil/update','ProfilController@update')->name('profil.update');
 Route::post('/profil-bild','ProfilController@profilBild')->name('profil.bild');
 
-/*-----------------------------sonstige-------------------------------------- */
+/*----------------------------- Sonstige -------------------------------------- */
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');
     return "Cache is cleared";
@@ -113,6 +117,6 @@ Route::any('/{page?}',function(){
 })->where('page','.*');
 
 
-/*-------------------------------------------------------------------------- */
+/*----------------------------------------------------------------------------------------------- */
 
 

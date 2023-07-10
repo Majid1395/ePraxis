@@ -9,9 +9,10 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class BuchungMailLoeschen extends Mailable
+class AnmeldungMail extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $mailDaten;
     /**
      * Create a new message instance.
@@ -27,7 +28,7 @@ class BuchungMailLoeschen extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Buchunglöschen Mail',
+            subject: 'Anmeldung Mail',
         );
     }
 
@@ -37,7 +38,7 @@ class BuchungMailLoeschen extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'pages.email.loeschen',
+            view: 'pages.email.anmelden',
         );
     }
 

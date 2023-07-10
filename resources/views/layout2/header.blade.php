@@ -18,14 +18,7 @@
 			<div class="navbar-collapse collapse" id="navbar">
 				<ul class="nav navbar-nav menubar navbar-right">
 					<li><a title="Home" href="{{url('dashboard')}}">Home</a></li>
-					<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" title="Contact" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kontakt</a>
-						<i class="ddl-switch fa fa-angle-down"></i>
-						<ul class="dropdown-menu">
-                            <li><a href="{{ asset('frontend/contact-1.html') }}" title="Blog Post">Kontakt 1</a></li>
-							<li><a href="{{ asset('frontend/contact-2.html') }}" title="Blog Post">Kontakt 2</a></li>
-						</ul>
-					</li>
+                    <li><a title="Kontakt" href="{{ asset('frontend/contact-1.html') }}">Kontakt</a></li>
                     <!-- Authentication Links -->
                     @guest
                         <li>
@@ -35,7 +28,7 @@
                         </li>
                     @else
                         <li class="dropdown mega-dropdown active">
-                            <a href="#" class="dropdown-toggle" title="Blog" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->vorname}} {{Auth::user()->name}}</a>
+                            <a href="#" class="dropdown-toggle" title="Benutzer" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->vorname}} {{Auth::user()->name}}</a>
                             <i class="ddl-switch fa fa-angle-down"></i>
                             <ul class="dropdown-menu">
                                 @if(auth()->check()&& auth()->user()->rolle->name === 'patient')

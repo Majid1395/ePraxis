@@ -12,19 +12,15 @@ class FrontendController extends Controller
     public function index(){
         if(request('datum')){
             $datum = request('datum');
-            $aerzte = $this->aerzteFinden(request('datum'));
+            $aerzte = Termin::where('datum',$datum)->get();
             return view('pages.frontend.aerzte',compact('aerzte', 'datum'));
         }
-        // to show doctors which has appointment today
+        // um den Ärzten zu zeigen, wer heute einen Termin hat
         $aerzte = Termin::where('datum',date('Y-m-d'))->get();
-        // to show doctors
+        // Ärzten zeigen
         $aerzte_zeigen = User::where('rolle_id','=',1)->get();
 
         return view('home2',compact('aerzte','aerzte_zeigen'));
     }
 
-    public function aerzteFinden($datum){
-        $aerzte = Termin::where('datum',$datum)->get();
-        return $aerzte;
-    }
 }

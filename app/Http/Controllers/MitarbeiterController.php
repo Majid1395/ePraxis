@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AnmeldungMail;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class MitarbeiterController extends Controller
 {
@@ -35,16 +38,18 @@ class MitarbeiterController extends Controller
             'name'=>'required',
             'vorname'=>'required',
             'email'=>'required|unique:users',
-            'password'=>'required|min:6|max:25',
             'geschlecht'=>'required',
         ]);
 
         $daten = $request->all();
-
         $bild = $this->defaultBild();
-        $daten['bild'] = $bild;
+        $randomPassword = Str::random(8);
 
-        $daten['password'] = bcrypt($request->password);
+        //E-Mail-Benachrichtigung senden
+        //$this->anmeldungMail($request, $randomPassword);
+
+        $daten['bild'] = $bild;
+        $daten['password'] = bcrypt($randomPassword);
         User::create($daten);
 
         return redirect()->back()->with('message','Patient erfolgreich hinzugefügt');
@@ -108,6 +113,7 @@ class MitarbeiterController extends Controller
         return redirect()->route('mitarbeiter.index')->with('message','Patient erfolgreich gelöscht');
     }
 
+    /********************* Hilfsfunktionen *************************/
     public function defaultBild(){
         $destination = public_path('/assets/images/users');
         $defaultName = 'default.png';
@@ -123,5 +129,17 @@ class MitarbeiterController extends Controller
         rename($destination.'/'.$defaultName, $destination.'/'.$uniqueName);
 
         return $uniqueName;
+    }
+
+    //E-Mail-Benachrichtigung senden
+    public function anmeldungMail($request, $randomPassword){
+
+        $mailDaten = [
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>$randomPassword,
+        ];
+
+        return Mail::to($request->email)->send(new AnmeldungMail($mailDaten));
     }
 }

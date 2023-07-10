@@ -39,7 +39,7 @@
                             <input type="hidden" name="rolle_id" value="{{$rolle->id}}">
                         @endforeach
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="mb-3">
 					                <label for="">Geschlecht
                                         <span class="mandatory">*</span>
@@ -56,24 +56,7 @@
                                     @enderror
                                 </div>
 				            </div>
-                            <div class="col-sm-4">
-                                <div class="mb-3">
-                                    <div class="form-group">
-                                        <label for="">Telefonnummer
-                                            <!-- <span class="mandatory">*</span> -->
-                                        </label>
-                                        <br>
-                                        <input type="text" name="telefonnummer" class="form-control @error('telefonnummer') is-invalid @enderror"
-                                            value="{{old('telefonnummer')}}" placeholder="telefonnummer">
-                                        @error('telefonnummer')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="mb-3">
 						            <label for="">Geburtsdatum</label>
 						            <div class="form-group input-group flatpickr" id="flatpickr-date">
@@ -130,15 +113,12 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label for="">Passwort
-                                        <span class="mandatory">*</span>
-                                    </label>
-                                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="benutzer passwort">
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <div class="form-group">
+                                        <label for="">Telefonnummer</label>
+                                        <br>
+                                        <input type="text" name="telefonnummer" class="form-control @error('telefonnummer') is-invalid @enderror"
+                                            value="{{old('telefonnummer')}}" placeholder="telefonnummer">
+                                    </div>
                                 </div>
                             </div>
                         </div>

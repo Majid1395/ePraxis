@@ -19,7 +19,6 @@
                     @endif
                     <form class="profile-form" action="{{route('meine-buchung.loeschen')}}" method="post">@csrf
                         <div style="padding-left: 0%;" class="other-services-content">
-                            <!-- <h5>All Appointments</h5> -->
                             <div class="card">
 				                <div class="card-body">
                                     <div class="table-responsive">
@@ -31,7 +30,7 @@
                                                     <th scope="col">Datum</th>
                                                     <th scope="col">Erstellt am</th>
                                                     <th scope="col">Status</th>
-                                                    <th scope="col">Löschen</th>
+                                                    <th scope="col">Aktion</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -44,10 +43,8 @@
                                                     <td>
                                                         @if($buchung->status==0)
                                                         <span style="background-color: #66d1d1;" class="badge">Ausstehend</span>
-                                                        <!-- <button class="btn btn-primary">Pending</button> -->
                                                         @else
                                                         <span style="background-color: #05a34a;" class="badge">Bestätigt</span>
-                                                        <!-- <button class="btn btn-success"> Cheked</button> -->
                                                         @endif
                                                     </td>
                                                     <td>
