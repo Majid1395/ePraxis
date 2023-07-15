@@ -27,17 +27,17 @@ class DashboardController extends Controller
     public function index()
     {
         if(Auth::user()->rolle->name == 'patient'){
-            // to show doctors
+            // Ärzten zeigen
             $aerzte_zeigen = User::where('rolle_id','=',1)->get();
             return view('home2',compact('aerzte_zeigen'));
         }
-        // view patient
+        // Patienten ansehen
         $patienten = User::where('rolle_id','=',4)->get();
 
-         // view booking
+         // Buchung ansehen
          $buchungen = Buchung::latest()
             ->where('datum','>=',date('Y-m-d'))
-            ->paginate(20);
+            ->get();
 
             return view('dashboard', compact('buchungen','patienten'));
 

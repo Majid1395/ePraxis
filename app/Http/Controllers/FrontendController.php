@@ -15,12 +15,10 @@ class FrontendController extends Controller
             $aerzte = Termin::where('datum',$datum)->get();
             return view('pages.frontend.aerzte',compact('aerzte', 'datum'));
         }
-        // um den Ärzten zu zeigen, wer heute einen Termin hat
-        $aerzte = Termin::where('datum',date('Y-m-d'))->get();
         // Ärzten zeigen
         $aerzte_zeigen = User::where('rolle_id','=',1)->get();
 
-        return view('home2',compact('aerzte','aerzte_zeigen'));
+        return view('home2',compact('aerzte_zeigen'));
     }
 
 }

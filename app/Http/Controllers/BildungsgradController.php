@@ -75,6 +75,12 @@ class BildungsgradController extends Controller
     public function destroy(string $id)
     {
         $bildungsgrad = Bildungsgrad::find($id);
+        //Sicherstellung, dass mindestens ein Bildungsgrad in der Datenbank vorhanden ist
+        $check = Bildungsgrad::count();
+        if($check == 1){
+            return redirect()->route('bildungsgrad.index')->with('errmessage','Bildungsgrad ist nicht löschbar');
+        }
+
         //zu überprüfen, ob dieser Bildungsgrad von den Nutzern in Anspruch genommen wird
         $benutzer = User::where('bildungsgrad',$bildungsgrad->name)->exists();
         if($benutzer){

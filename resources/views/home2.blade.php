@@ -255,68 +255,68 @@
 					<div class="col-md-2 col-sm-6 col-xs-6 department-box">
 						<div class="department-img-block">
 							<img src="{{ asset('frontend/assets/images/dept-1.png') }}" alt="dept">
-							<span>Neurology</span>
+							<span>Neurologie</span>
 						</div>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 department-box">
 						<div class="department-img-block">
 							<img src="{{ asset('frontend/assets/images/dept-2.png') }}" alt="dept">
-							<span>Cardiology</span>
+							<span>Kardiologie</span>
 						</div>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 department-box">
 						<div class="department-img-block">
 							<img src="{{ asset('frontend/assets/images/dept-3.png') }}" alt="dept">
-							<span>Dermatology</span>
+							<span>Dermatologie</span>
 						</div>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 department-box">
 						<div class="department-img-block">
 							<img src="{{ asset('frontend/assets/images/dept-4.png') }}" alt="dept">
-							<span>Gastroenterology</span>
+							<span>Gastroenterologie</span>
 						</div>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 department-box">
 						<div class="department-img-block">
 							<img src="{{ asset('frontend/assets/images/dept-5.png') }}" alt="dept">
-							<span>Pediatrician</span>
+							<span>Hausarzt</span>
 						</div>
 					</div>
 
 					<div class="col-md-2 col-sm-6 col-xs-6 department-box">
 						<div class="department-img-block">
 							<img src="{{ asset('frontend/assets/images/dept-6.png') }}" alt="dept">
-							<span>Otolaryngology</span>
+							<span>HNO</span>
 						</div>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 department-box">
 						<div class="department-img-block">
 							<img src="{{ asset('frontend/assets/images/dept-7.png') }}" alt="dept">
-							<span>Hematology</span>
+							<span>Hämatologie</span>
 						</div>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 department-box">
 						<div class="department-img-block">
 							<img src="{{ asset('frontend/assets/images/dept-8.png') }}" alt="dept">
-							<span>Radiation</span>
+							<span>Strahlung</span>
 						</div>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 department-box">
 						<div class="department-img-block">
 							<img src="{{ asset('frontend/assets/images/dept-9.png') }}" alt="dept">
-							<span>Podiatry</span>
+							<span>Podologie</span>
 						</div>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 department-box">
 						<div class="department-img-block">
 							<img src="{{ asset('frontend/assets/images/dept-10.png') }}" alt="dept">
-							<span>Rheumatology</span>
+							<span>Rheumatologie</span>
 						</div>
 					</div>
 				</div>
-				<div class="show-all">
+				<!-- <div class="show-all">
 					<a href="#" title="show all">alles Zeige</a>
-				</div>
+				</div> -->
 			</div><!-- Container /- -->
 		</div><!-- Department Section -->
 

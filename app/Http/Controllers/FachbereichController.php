@@ -76,6 +76,11 @@ class FachbereichController extends Controller
     public function destroy(string $id)
     {
         $fachbereich = Fachbereich::find($id);
+        //Sicherstellung, dass mindestens ein Fachbereich in der Datenbank vorhanden ist
+        $check = Fachbereich::count();
+        if($check == 1){
+            return redirect()->route('fachbereich.index')->with('errmessage','Fachbereich ist nicht löschbar');
+        }
         //zu überprüfen, ob dieser Fachbereich von den Nutzern in Anspruch genommen wird
         $benutzer = User::where('fachbereich',$fachbereich->name)->exists();
         if($benutzer){

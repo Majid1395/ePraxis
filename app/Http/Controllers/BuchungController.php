@@ -207,7 +207,7 @@ class BuchungController extends Controller
     public function allePatienten(){
         $buchungen = Buchung::latest()
             ->where('datum','>=',date('Y-m-d'))
-            ->paginate(20);
+            ->get();
 
         $zeiten = [];
 
