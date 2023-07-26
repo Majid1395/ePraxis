@@ -6,7 +6,7 @@ Dieses Projekt konzentriert sich auf die Entwicklung einer Web-Anwendung namens 
 
 ## Einrichten der Entwicklungsumgebung
 
-Stellen Sie bitte sicher, dass [PHP](https://www.php.net/) [Composer](https://getcomposer.org/) und [XAMPP](https://www.apachefriends.org) [Nodejs](https://nodejs.org/en/) auf Ihrem Computer installiert sind.
+Stellen Sie bitte sicher, dass [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [XAMPP](https://www.apachefriends.org) und [Nodejs](https://nodejs.org/en/) auf Ihrem Computer installiert sind.
 
 ## Installationsschritte
 
