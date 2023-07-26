@@ -18,7 +18,7 @@
 			<div class="navbar-collapse collapse" id="navbar">
 				<ul class="nav navbar-nav menubar navbar-right">
 					<li><a title="Home" href="{{url('dashboard')}}">Home</a></li>
-                    <li><a title="Kontakt" href="{{ asset('frontend/contact-1.html') }}">Kontakt</a></li>
+                    <li><a title="Kontakt" href="#">Kontakt</a></li>
                     <!-- Authentication Links -->
                     @guest
                         <li>

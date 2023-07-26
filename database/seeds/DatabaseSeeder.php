@@ -45,6 +45,7 @@ class DatabaseSeeder extends Seeder
         Bildungsgrad::create(['name'=>'Dr.med.']);
         Bildungsgrad::create(['name'=>'Dr.med.dent.']);
         Bildungsgrad::create(['name'=>'Dr.PH']);
+        Bildungsgrad::create(['name'=>'Praxismanager']);
     }
 
     public function defaultBild(){

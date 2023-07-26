@@ -88,7 +88,7 @@ class BuchungController extends Controller
             ->update(['status'=>1]);
 
         // E-Mail-Benachrichtigung senden
-        //$this->buchungMail($request, $mitarbeiterCheck);
+        $this->buchungMail($request, $mitarbeiterCheck);
 
         if($mitarbeiterCheck){
             $datum = $request->datum;
@@ -127,7 +127,7 @@ class BuchungController extends Controller
         $buchungLoeschen = $buchung->delete();
 
         // E-Mail-Benachrichtigung senden
-        //$this->buchungLoeschenMail($buchung);
+        $this->buchungLoeschenMail($buchung);
 
         // Als Patient
         if(auth()->user()->role_id == 4){
@@ -199,7 +199,7 @@ class BuchungController extends Controller
         $buchung->save();
 
         //E-Mail-Benachrichtigung senden
-        //$this->bestaetigungsMail($buchung);
+        $this->bestaetigungsMail($buchung);
 
         return redirect()->back();
     }
