@@ -46,7 +46,7 @@ class MitarbeiterController extends Controller
         $randomPassword = Str::random(8);
 
         //E-Mail-Benachrichtigung senden
-        //$this->anmeldungMail($request, $randomPassword);
+        $this->anmeldungMail($request, $randomPassword);
 
         $daten['bild'] = $bild;
         $daten['password'] = bcrypt($randomPassword);
