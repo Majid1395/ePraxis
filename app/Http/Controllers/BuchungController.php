@@ -22,6 +22,13 @@ class BuchungController extends Controller
      * Display a listing of the resource.
      */
     public function index(){
+        $buchungCheck= Buchung::exists();
+
+        if(!$buchungCheck){
+            $buchungen = Buchung::get();
+            return view('pages.buchung.index',compact('buchungen'));
+        }
+
         $buchungen = Buchung::first()
             ->where('datum','>=',date('Y-m-d'))
             ->where('benutzer_id',auth()->user()->id)
